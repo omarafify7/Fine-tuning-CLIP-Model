@@ -5,6 +5,35 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # ==============================================================================
+# Device Configuration
+# ==============================================================================
+
+def get_device(verbose=True):
+    """
+    Get the available device, prioritizing MPS (Apple Silicon) > CUDA > CPU.
+    
+    Args:
+        verbose (bool): If True, prints the selected device.
+        
+    Returns:
+        torch.device: The selected device.
+    """
+    if torch.backends.mps.is_available():
+        device = torch.device("mps")
+        if verbose:
+            print("Success: MPS (Metal Performance Shaders) is available! Using Apple Silicon GPU.")
+    elif torch.cuda.is_available():
+        device = torch.device("cuda")
+        if verbose:
+            print(f"Success: CUDA is available! Using GPU: {torch.cuda.get_device_name(0)}")
+    else:
+        device = torch.device("cpu")
+        if verbose:
+            print("MPS/CUDA not available. Using CPU.")
+            
+    return device
+
+# ==============================================================================
 # Checkpointing Functions
 # ==============================================================================
 
