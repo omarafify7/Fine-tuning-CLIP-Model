@@ -1,0 +1,1 @@
+cd src && /Users/omarafify/miniconda3/envs/ELEC475/bin/python train.py --epochs 10 --batch_size 32

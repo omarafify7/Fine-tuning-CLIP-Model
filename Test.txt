@@ -1,0 +1,1 @@
+cd src && /Users/omarafify/miniconda3/envs/ELEC475/bin/python evaluate.py --checkpoint ../checkpoints/checkpoint_last.pth
